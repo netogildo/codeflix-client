@@ -1,4 +1,4 @@
-
+import { AdminNavItem } from "@/types/admin";
 
 export const navItems: AdminNavItem[] = [
     {
