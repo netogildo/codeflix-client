@@ -49,7 +49,8 @@ async function getData(organizationId: string): Promise<Organization> {
         {
             id: organizationId,
             name: "org 1",
-            status: "pending"
+            document_type: "cpf",
+            document_number: "11111111111"
         }
     );
 }

@@ -8,21 +8,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { File, ListFilter, PlusCircle } from "lucide-react";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { apiRequest } from "@/app/service/admin/AdminApiRequest";
 
 // const breadcrumbItems = [{ title: "Employee", link: "/dashboard/employee" }];
 
 async function getData(): Promise<Organization[]> {
+    return apiRequest('organizations');
     // Fetch data from your API here.
     return [
         {
             id: "728ed52f",
             name: "org 1",
-            status: "pending"
+            document_type: "cpf",
+            document_number: "11111111111"
           },
           {
             id: "489e1d42",
             name: "org 2",
-            status: "processing"
+            document_type: "cnpj",
+            document_number: "22222222222222"
           }
     ]
 }
@@ -90,12 +94,14 @@ export default async function OrganizacoesPage() {
                         Export
                     </span>
                     </Button>
-                    <Button size="sm" className="h-7 gap-1">
-                    <PlusCircle className="h-3.5 w-3.5" />
-                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                        Organização 
-                    </span>
-                    </Button>
+                    <Link href="/admin/organizacoes/creator">
+                        <Button size="sm" className="h-7 gap-1">
+                            <PlusCircle className="h-3.5 w-3.5" />
+                            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                                Organização 
+                            </span>
+                        </Button>
+                    </Link>
                 </div>
                 </div>
                 <TabsContent value="all">

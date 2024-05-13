@@ -1,7 +1,8 @@
 export type Organization = {
     id: string;
     name: string;
-    status: "pending" | "processing" | "success" | "failed"
+    document_type: "cpf" | "cnpj";
+    document_number: string;
 }
 
 export type Organizations = Organization[];
