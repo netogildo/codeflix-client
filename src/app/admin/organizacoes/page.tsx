@@ -14,9 +14,13 @@ import { OrganizationSearchResponse, searchOrganizations } from "@/app/service/a
 // const breadcrumbItems = [{ title: "Employee", link: "/dashboard/employee" }];
 
 export default async function OrganizacoesPage() {
-  const data = await searchOrganizations();
+//   const data = await searchOrganizations();
 
-  console.log(data);
+//   console.log(data);
+
+const data = {
+    items: []
+};
   
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
