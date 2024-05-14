@@ -1,9 +1,20 @@
 import { Organization, Organizations } from "@/types/admin/Organization";
-import { RequestOptions, apiRequest } from "./AdminApiRequest";
+import { PageResponse, RequestOptions, apiRequest } from "./AdminApiRequest";
+
+interface OrganizationListResponse {
+    id: string;
+    name: string;
+    document_type: "cpf" | "cnpj";
+    document_number: string;
+}
+
+export interface OrganizationSearchResponse extends PageResponse {
+    items: OrganizationListResponse[];
+}
 
 export const createOrganization = async (input: Organization): Promise<string> => {
 
-    
+
 
     return "";
 }
@@ -13,16 +24,16 @@ export const getOrganizationById = async (id: string): Promise<Organization> => 
 }
 
 export const searchOrganizations = async (
-    title: string = '',
-    genre: string = '',
-    options?: RequestOptions
-): Promise<Organizations> => {
+    // title: string = '',
+    // genre: string = '',
+    // options?: RequestOptions
+): Promise<OrganizationSearchResponse> => {
     return apiRequest(
-        `movies`,
-        {
-            title_like: encodeURIComponent(title),
-            genres_like: encodeURIComponent(genre)
-        },
-        options
+        `organizations`,
+        // {
+        //     title_like: encodeURIComponent(title),
+        //     genres_like: encodeURIComponent(genre)
+        // },
+        // options
     );
 }

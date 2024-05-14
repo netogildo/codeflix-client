@@ -1,90 +1,59 @@
-import React from 'react';
-import Image from "next/image"
+'use client'
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import {
-    ChevronLeft,
-    ChevronRight,
-    Copy,
-    CreditCard,
-    DollarSign,
-    File,
-    Home,
-    LineChart,
-    ListFilter,
-    MoreHorizontal,
-    MoreVertical,
-    Package,
-    Package2,
-    PanelLeft,
-    PlusCircle,
-    Search,
     Settings,
-    ShoppingCart,
     Truck,
-    Users2,
 } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-  } from "@/components/ui/pagination"
-import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-  } from "@/components/ui/tabs"
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-  } from "@/components/ui/tooltip"
+import { DashboardModuleNav } from '@/components/DashboardModuleNav';
+import { DashNavModule } from '@/types/dashboard';
+import { DashboardUserNav } from '@/components/DashboardUserNav';
+import { cn } from '@/lib/utils';
+
+const navModules: DashNavModule[] = [
+  {
+    title: "Início",
+    href: "#",
+    icon: "home"
+  },
+  {
+    title: "Administração",
+    href: "#",
+    // icon: 
+  },
+  {
+    title: "Clientes",
+    href: "#"
+  }, 
+  {
+    title: "Financeiro",
+    href: "/dashboard/financeiro/cadastros",
+    icon: "dollarSign"
+  }
+];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [userDropdownActive, setUserDropdownActive] = useState(false);
+
+
     return (
             <div className="flex min-h-screen w-full flex-col bg-muted/40">
-              <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+              <aside 
+                onMouseEnter={() => setIsExpanded(true)}
+                onMouseLeave={() => {
+                    console.log(`mouse leave: ${isExpanded} ${userDropdownActive}`)
+                    if (!userDropdownActive) {
+                        setIsExpanded(false);
+                    }
+                }}
+                className={cn("fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background sm:flex transition-all duration-200 ease-in-out group",
+                  (!isExpanded && !userDropdownActive) ? "w-14" : "w-60"
+              )}
+                >
                 <nav className="flex flex-col items-center gap-4 px-2 py-4">
                   <Link
                     href="#"
@@ -93,57 +62,27 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <Truck className="h-4 w-4 transition-all group-hover:scale-110" />
                     <span className="sr-only">Pegasus</span>
                   </Link>
-                      <Link
-                        href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <Home className="h-5 w-5" />
-                        <span className="sr-only">Dashboard</span>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <ShoppingCart className="h-5 w-5" />
-                        <span className="sr-only">Orders</span>
-                      </Link>
-                      <Link
-                        href="/dashboard/financeiro/cadastros"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <DollarSign className="h-5 w-5" />
-                        <span className="sr-only">Financeiro</span>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <Package className="h-5 w-5" />
-                        <span className="sr-only">Products</span>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <Users2 className="h-5 w-5" />
-                        <span className="sr-only">Customers</span>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <LineChart className="h-5 w-5" />
-                        <span className="sr-only">Analytics</span>
-                      </Link>
+                  <DashboardModuleNav modules={navModules} isExpanded={isExpanded} />
                 </nav>
                 <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-4">
-                      <Link
-                        href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <Settings className="h-5 w-5" />
-                        <span className="sr-only">Settings</span>
-                      </Link>
+                  {/* Ajuste para manter o ícone na parte inferior e o texto aparecer ao lado no hover */}
+                  <div className="flex items-center justify-center w-full">
+                    <Link
+                      href="#"
+                      className="flex items-center justify-start w-full h-9 rounded-lg text-muted-foreground transition-colors hover:bg-gray-200 hover:bg-opacity-50 hover:text-accent-foreground md:h-8 relative"
+                    >
+                      <div className="absolute inset-y-0 py-1 left-0 flex items-center pl-2">
+                          <Settings className="h-5 w-5" />
+                      </div>
+                            {/* O texto é deslocado para não sobrepor o ícone */}
+                      <span className={`ml-10 text-sm font-medium ${isExpanded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 ease-in-out`}>Configurações</span>
+                    </Link>
+                  </div>
+                  <div className={cn("w-full inset-y-0 py-1 transition-opacity duration-200 ease-in-out hover:bg-gray-200 hover:bg-opacity-50 hover:text-accent-foreground rounded-lg",
+                    userDropdownActive ? "bg-gray-200 bg-opacity-50 text-accent-foreground" : ""
+                  )}>
+                    <DashboardUserNav isExpanded={isExpanded} setIsExpanded={setIsExpanded} userDropdownActive={userDropdownActive} setUserDropdownActive={setUserDropdownActive}/>
+                  </div>
                 </nav>
               </aside>
               <div className="flex flex-col sm:pl-8">

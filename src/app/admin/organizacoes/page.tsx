@@ -9,30 +9,14 @@ import { Button } from "@/components/ui/button";
 import { File, ListFilter, PlusCircle } from "lucide-react";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { apiRequest } from "@/app/service/admin/AdminApiRequest";
+import { OrganizationSearchResponse, searchOrganizations } from "@/app/service/admin/OrganizationService";
 
 // const breadcrumbItems = [{ title: "Employee", link: "/dashboard/employee" }];
 
-async function getData(): Promise<Organization[]> {
-    return apiRequest('organizations');
-    // Fetch data from your API here.
-    return [
-        {
-            id: "728ed52f",
-            name: "org 1",
-            document_type: "cpf",
-            document_number: "11111111111"
-          },
-          {
-            id: "489e1d42",
-            name: "org 2",
-            document_type: "cnpj",
-            document_number: "22222222222222"
-          }
-    ]
-}
-
 export default async function OrganizacoesPage() {
-  const data = await getData();
+  const data = await searchOrganizations();
+
+  console.log(data);
   
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -113,7 +97,7 @@ export default async function OrganizacoesPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <DataTable columns={columns} data={data} />
+                            <DataTable columns={columns} data={data.items} />
                         </CardContent>
                         <CardFooter>
                         <div className="text-xs text-muted-foreground">

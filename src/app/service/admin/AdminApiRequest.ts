@@ -8,14 +8,19 @@ export interface ApiQueryParameters {
 
 export interface RequestOptions {
     page?: number;
-    _limit?: number;
-    rating_like?: string;
+    limit?: number;
 }
 
 export const defaultOptions: RequestOptions = {
-    page: 1,
-    _limit: 10,
+    page: 0,
+    limit: 10,
   };
+
+export interface PageResponse {
+  currentPage: number;
+  perPage: number;
+  total: number;
+}
 
 export function buildQueryString(params: ApiQueryParameters): string {
     const query = Object.entries(params)
@@ -33,7 +38,10 @@ export async function apiRequest<T>(
     const mergedOptions: RequestOptions = { ...defaultOptions, ...options };
     const queryString: string = buildQueryString({ ...query, ...mergedOptions });
     try {
-      const response = await fetch(`${API_ADMIN_URL}/${endpoint}${queryString}`);
+
+      const url = `${API_ADMIN_URL}/${endpoint}${queryString}`;
+      console.log(url);
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`API request failed: ${response.statusText}`);
       }

@@ -30,6 +30,12 @@ import {
     UserX2Icon,
     Truck,
     X,
+    Landmark,
+    Wallet,
+    HandCoins,
+    Receipt,
+    Home,
+    DollarSign,
   } from "lucide-react";
   
   export type Icon = LucideIcon;
@@ -61,6 +67,12 @@ import {
     sun: SunMedium,
     moon: Moon,
     laptop: Laptop,
+    landmark: Landmark,
+    wallet: Wallet,
+    handCoins: HandCoins,
+    receipt: Receipt,
+    home: Home,
+    dollarSign: DollarSign,
     google: ({ ...props }: LucideProps) => (
       <svg
         aria-hidden="true"
