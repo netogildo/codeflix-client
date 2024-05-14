@@ -50,7 +50,7 @@ export function DashboardNav({ module, groups, setOpen }: DashboardNavProps) {
                                                     const Icon = Icons[item.icon || "arrowRight"];
                                                     return (
                                                         <Link
-                                                            href={`${item.disabled}  ? "/" : ${item.href}`}
+                                                            href={`${item.href}`}
                                                             key={index}
                                                             onClick={() => {
                                                                 if(setOpen) setOpen(false);
