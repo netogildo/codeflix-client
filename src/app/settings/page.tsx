@@ -4,7 +4,7 @@ import { getFeaturedMovie } from '../service/dashboard/MovieService';
 
 async function Settings() {
 
-    const featuredMovie = await getFeaturedMovie('101');
+    // const featuredMovie = await getFeaturedMovie('101');
 
     const { theme, language } = await getAppSettings();
 
@@ -14,7 +14,7 @@ async function Settings() {
 
             <div className='border border-dashed border-red-500 p-4'>
 
-                <p>Teste: {featuredMovie.title}</p>
+                {/* <p>Teste: {featuredMovie.title}</p> */}
 
                 <p>Theme: {theme}</p>
                 <p>Language: {language}</p>

@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { useTheme } from "next-themes";
 
 interface DashboardUserNavProps {
     isExpanded: boolean;
@@ -13,6 +13,8 @@ interface DashboardUserNavProps {
 }
 
 export function DashboardUserNav({ isExpanded, setIsExpanded, userDropdownActive, setUserDropdownActive }: DashboardUserNavProps) {
+    const { theme, setTheme } = useTheme();
+
 
     return (
       <DropdownMenu onOpenChange={(isOpen) => {
@@ -21,14 +23,13 @@ export function DashboardUserNav({ isExpanded, setIsExpanded, userDropdownActive
         }}>
             <DropdownMenuTrigger asChild>
                 <Button
-                    variant="ghost" 
-                    className="flex items-center justify-start relative h-8 w-full pl-[2px] focus-visible:ring-transparent"
+                    variant={"link"}
+                    className="flex items-center justify-start relative h-9 w-full pl-[2px] focus-visible:ring-transparent hover:no-underline"
                     >
                     <Avatar className="h-8 w-8">
                         <AvatarImage src="/avatars/01.png" alt="@shadcn" />
                         <AvatarFallback>SC</AvatarFallback>
                     </Avatar>
-                    {/* Ajuste para alinhamento: considere remover pl-2 se estiver causando desalinhamento */}
                     <div className={`flex items-start flex-col space-y-1 ml-2 ${isExpanded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 ease-in-out`}>
                         <p className="text-sm font-medium leading-none">shadcn</p>
                         <p className="text-xs leading-none text-muted-foreground">
@@ -63,6 +64,13 @@ export function DashboardUserNav({ isExpanded, setIsExpanded, userDropdownActive
             <DropdownMenuItem>New Team</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup value={theme}>
+            <span className="px-2 py-1.5 text-xs text-gray-100 text-opacity-60">Tema</span>
+            <DropdownMenuRadioItem value="system" onClick={() => setTheme("system")}>System</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="dark" onClick={() => setTheme("dark")}>Dark</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="light" onClick={() => setTheme("light")}>Light</DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+        <DropdownMenuSeparator />
           <DropdownMenuItem>
             Log out
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

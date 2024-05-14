@@ -12,6 +12,7 @@ import { DashboardModuleNav } from '@/components/DashboardModuleNav';
 import { DashNavModule } from '@/types/dashboard';
 import { DashboardUserNav } from '@/components/DashboardUserNav';
 import { cn } from '@/lib/utils';
+import { Icons } from '@/components/Icons';
 
 const navModules: DashNavModule[] = [
   {
@@ -50,22 +51,27 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         setIsExpanded(false);
                     }
                 }}
-                className={cn("fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background sm:flex transition-all duration-200 ease-in-out group",
+                className={cn("fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background sm:flex transition-all duration-200 ease-in-out",
                   (!isExpanded && !userDropdownActive) ? "w-14" : "w-60"
               )}
                 >
-                <nav className="flex flex-col items-center gap-4 px-2 py-4">
-                  <Link
-                    href="#"
-                    className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-                  >
-                    <Truck className="h-4 w-4 transition-all group-hover:scale-110" />
-                    <span className="sr-only">Pegasus</span>
-                  </Link>
+                <nav className="flex flex-col items-center gap-4 px-2 py-2">
+                  <div className="flex items-center justify-center w-full">
+                    <Link
+                      href="#"
+                      className="flex items-center justify-start h-10 w-full transition-colors relative"
+                    >
+                      <div className="absolute inset-y-0 left-0 flex">
+                        <div className="flex items-center justify-center -z-10 h-10 w-10 bg-[#1d44b8] rounded-tl-lg rounded-br-lg">
+                          <Icons.pegasus className="h-9 w-9"/>
+                        </div>
+                      </div>
+                      <span className={`font-exo ml-14 text-4xl uppercase font-bold ${isExpanded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 ease-in-out text-[#1d44b8]`}>Pegasus</span>                      
+                    </Link>
+                  </div>
                   <DashboardModuleNav modules={navModules} isExpanded={isExpanded} />
                 </nav>
                 <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-4">
-                  {/* Ajuste para manter o ícone na parte inferior e o texto aparecer ao lado no hover */}
                   <div className="flex items-center justify-center w-full">
                     <Link
                       href="#"
@@ -74,7 +80,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <div className="absolute inset-y-0 py-1 left-0 flex items-center pl-2">
                           <Settings className="h-5 w-5" />
                       </div>
-                            {/* O texto é deslocado para não sobrepor o ícone */}
                       <span className={`ml-10 text-sm font-medium ${isExpanded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 ease-in-out`}>Configurações</span>
                     </Link>
                   </div>

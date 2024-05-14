@@ -74,3 +74,15 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .label-font {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  @font-face {
+    font-family: "Exo";
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    src: url('/fonts/Exo.woff2') format('woff2');
+  }
