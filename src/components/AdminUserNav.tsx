@@ -1,14 +1,14 @@
 'use client'
 
+import { Monitor, Moon, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { useTheme } from "next-themes";
+import ChangeThemeUserNav from "./ChangeThemeUserNav";
 
 export function AdminUserNav() {
-    const { theme, setTheme } = useTheme();
-
-
+    
+    
     return (
       <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -54,12 +54,7 @@ export function AdminUserNav() {
             <DropdownMenuItem>New Team</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup value={theme}>
-            <span className="px-2 py-1.5 text-xs text-gray-100 text-opacity-60">Tema</span>
-            <DropdownMenuRadioItem value="system" onClick={() => setTheme("system")}>System</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="dark" onClick={() => setTheme("dark")}>Dark</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="light" onClick={() => setTheme("light")}>Light</DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
+          <ChangeThemeUserNav />
         <DropdownMenuSeparator />
           <DropdownMenuItem>
             Log out

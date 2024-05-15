@@ -5,7 +5,7 @@ import { Icons } from "./Icons";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { useTheme } from "next-themes";
+import ChangeThemeUserNav from "./ChangeThemeUserNav";
 
 interface DashboardUserNavProps {
     isExpanded: boolean;
@@ -15,8 +15,6 @@ interface DashboardUserNavProps {
 }
 
 export function DashboardUserNav({ isExpanded, setIsExpanded, userDropdownActive, setUserDropdownActive }: DashboardUserNavProps) {
-    const { theme, setTheme } = useTheme();
-
 
     return (
       <DropdownMenu onOpenChange={(isOpen) => {
@@ -53,7 +51,7 @@ export function DashboardUserNav({ isExpanded, setIsExpanded, userDropdownActive
           <DropdownMenuItem>
               <Link
                 href="/admin/organizacoes"
-                className="flex items-center gap-2">
+                className="flex w-full items-center gap-2">
                 <Icons.bolt className="h-4 w-4" />
               Administração
               </Link>
@@ -75,12 +73,7 @@ export function DashboardUserNav({ isExpanded, setIsExpanded, userDropdownActive
             <DropdownMenuItem>New Team</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup value={theme}>
-            <span className="px-2 py-1.5 text-xs text-gray-100 text-opacity-60">Tema</span>
-            <DropdownMenuRadioItem value="system" onClick={() => setTheme("system")}>System</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="dark" onClick={() => setTheme("dark")}>Dark</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="light" onClick={() => setTheme("light")}>Light</DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
+          <ChangeThemeUserNav />
         <DropdownMenuSeparator />
           <DropdownMenuItem>
             Log out
