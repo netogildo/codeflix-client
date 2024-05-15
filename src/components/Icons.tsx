@@ -36,6 +36,7 @@ import {
     Receipt,
     Home,
     DollarSign,
+    Bolt,
   } from "lucide-react";
   
   export type Icon = LucideIcon;
@@ -73,6 +74,7 @@ import {
     receipt: Receipt,
     home: Home,
     dollarSign: DollarSign,
+    bolt: Bolt,
     pegasus: ({...props}: LucideProps) => (
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
@@ -82,6 +84,9 @@ import {
         >
         <path d="M52.7 87.9v2h-19c0-5.8 2.5-11.2 7-15 3.4-2.8 5.5-6.8 6-11.2 7.9-.9 14.1-7.7 14.1-15.9 0-3.4-1.1-6.7-3.1-9.5-.7-.9-1.9-1.1-2.8-.4-.9.7-1.1 1.9-.4 2.8 1.5 2.1 2.3 4.5 2.3 7.1 0 6.6-5.4 12-12 12-2.6 0-5-.8-7.1-2.3-.8-.6-1.9-.5-2.6.2l-8.9 8.9c-1.2 1.2-2.7 1.8-4.3 1.8-1.6 0-3.2-.7-4.3-1.9L11 59.6c-2.1-2.2-2.2-5.6-.3-7.9l21.6-26.6c.4-.5.5-1.1.4-1.6-.1-.6-.5-1.1-1-1.4-3.1-1.8-3.5-7.6-3.3-12.1 3.4 3.6 9.6 8.6 18.9 10.2 19.2 2.6 30.5 13.1 34.4 32 1 4.8 1.3 9.2.8 13.6h-7.9c-12 .1-21.9 10-21.9 22.1zm22-18c-9.9 0-18 8.1-18 18v2h15c4.4 0 8-3.6 8-8v-2c0-1.1.9-2 2-2h1c4.4 0 8-3.6 8-8h-16z" fill="#f8fcfa" className="color000000 svgShape"></path>
       </svg>
+    ),
+    pegasus2: ({...props}: LucideProps) => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" {...props}><circle cx="42.5" cy="30.5" r="18.5" fill="#c4cde7" className="colore7d1c4 svgShape"></circle><path fill="#ffffff" stroke="#1d44b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M42 21h-5 0v-4a5 5 0 0 1 5-5h0v9h0Z" className="colorfff svgShape colorStroke4c241d svgStroke"></path><path fill="#ffffff" stroke="#1d44b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M42.092 57 42 41l5.739.495 2.676 2.23a5.843 5.843 0 0 0 7.873-.357h0a5.842 5.842 0 0 0 0-8.264l-16.2-16.2a19.2 19.2 0 0 0-19.2 19.2V57Z" className="colorfff svgShape colorStroke4c241d svgStroke"></path><path fill="#ffffff" stroke="#1d44b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m42 41-1.528-.764A8.09 8.09 0 0 1 36 33h0" className="colorfff svgShape colorStroke4c241d svgStroke"></path><path fill="#9dafe4" stroke="#1d44b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.222 57H33V46.773A11.773 11.773 0 0 0 21.227 35H3Z" className="color9dc1e4 svgShape colorStroke4c241d svgStroke"></path><path fill="none" stroke="#1d44b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.571 41h15.572M7 46h10M9 51h5M47 31l-2-2" className="colorStroke4c241d svgStroke"></path></svg>
     ),
     google: ({ ...props }: LucideProps) => (
       <svg
